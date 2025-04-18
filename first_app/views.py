@@ -3,8 +3,11 @@ from django.http.response import HttpResponse
 
 # Create your views here.
 
-def sports_view(request):
-  return HttpResponse("SPORTS PAGE")
+articles = {
+  "sports": "Sports Page",
+  "finance": "Finance Page",
+  "politics": "Politics Page"
+}
 
-def finance_view(request):
-  return HttpResponse("FINANCE PAGE")
+def news_view(request, topic):
+  return HttpResponse(articles[topic])
