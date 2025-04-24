@@ -8,9 +8,12 @@
 
 <body>
   <h1>Variable.html</h1>
-  <h2>My name is {{first_name | lower | capfirst}} {{last_name | capfirst}}</h2>
-  <h2>This year I am {{age}} years old</h2>
-  <h2>{# This is a comment #}</h2>
-</body>
 
+  <ul>
+  {% for item in some_list %}
+    <li>{{item}}</li>
+  {% endfor %}
+  </ul>
+
+</body>
 </html>
