@@ -9,6 +9,10 @@
 <body>
   <h1>Variable.html</h1>
 
+  {% if user_logged_in %}
+    <h1>Hi {{first_name | lower | capfirst}} {{last_name | capfirst}}</h1>
+  {% endif %}
+
   <ul>
   {% for num in some_list %}
 
