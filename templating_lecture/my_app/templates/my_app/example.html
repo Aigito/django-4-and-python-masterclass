@@ -1,14 +1,7 @@
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+{% block content %}
 
-<body>
-  <h1>Example Template</h1>
-  <h1><a href="{% url "my_app:variable" %}">Click me to go to Variable</a></h1>
-</body>
+<h1>This is inside the block of example.html</h1>
 
-</html>
+{% endblock %}
