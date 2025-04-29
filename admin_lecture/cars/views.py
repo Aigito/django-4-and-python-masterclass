@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from . import models
 
 # Create your views here.
 def list(request):
-  return render(request, 'cars/list.html')
+  all_cars = models.Car.objects.all()
+  context = { "all_cars": all_cars }
+
+  return render(request, 'cars/list.html', context = context)
 
 def add(request):
   return render(request, 'cars/add.html')
