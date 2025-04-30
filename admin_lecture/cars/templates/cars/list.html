@@ -4,8 +4,8 @@
   <div class = "container">
     <h1>LIST.HTML</h1>
       <ul>
-        {% for cars in all_cars %}
-          <li>{{car}}</li>
+        {% for car in all_cars %}
+          <li>{{car.pk}} {{car}}</li>
         {% endfor %}
       </ul>
   </div>
