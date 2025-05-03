@@ -18,4 +18,9 @@ from django.forms import ModelForm
 class ReviewForm(ModelForm):
   class Meta:
     model = Review
-    fields = ["first_name", "last_name", "stars"]
+    fields = "__all__"
+    labels = {
+      "first_name": "What is your first name?",
+      "last_name": "Thy family name?",
+      "stars": "How was the service?"
+    }
