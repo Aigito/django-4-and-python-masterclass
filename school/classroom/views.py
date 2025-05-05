@@ -35,6 +35,10 @@ class ContactView(FormView):
 
 class TeacherListView(ListView):
   model = Teacher
+  # template_name = <model_name>_list.html by default; in this case it's teacher_list.html
+  # context_object_name = 'object_list' by default; can change this to 'teacher' if preferred
 
 class TeacherDetailView(DetailView):
   model = Teacher
+  # template_name = <model_name>_detail.html by default; in this case it's teacher_list.html
+  # context_object_name = 'object' / <model_name_in_lowercase> by default, in this case `teacher` also works
