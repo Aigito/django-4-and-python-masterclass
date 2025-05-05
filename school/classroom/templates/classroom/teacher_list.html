@@ -4,5 +4,10 @@
     <li>
       <a href="{% url "classroom:detail_teacher" pk=teacher.pk %}">{{teacher.first_name}} {{teacher.last_name}}</a>
     </li>
+    <ul>
+      <li>
+        <a href="{% url "classroom:update_teacher" pk=teacher.pk %}">Update {{teacher.first_name}} {{teacher.last_name}}</a>
+      </li>
+    </ul>
   {% endfor %}
 </ul>

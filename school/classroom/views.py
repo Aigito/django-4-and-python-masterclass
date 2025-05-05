@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView
+from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView, UpdateView
 from django.urls import reverse, reverse_lazy
 from .forms import ContactForm
 from .models import Teacher
@@ -42,3 +42,10 @@ class TeacherDetailView(DetailView):
   model = Teacher
   # template_name = <model_name>_detail.html by default; in this case it's teacher_list.html
   # context_object_name = 'object' / <model_name_in_lowercase> by default, in this case `teacher` also works
+
+class TeacherUpdateView(UpdateView):
+  # shares the teacher_form.html - meaning no need to create a separate teacher_update_form.html file but can if we prefer
+  # in that case, will have to set template_name = "[custom_name]_update_form.html"
+  model = Teacher
+  fields = "__all__"
+  success_url = reverse_lazy("classroom:list_teacher")
