@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView, UpdateView
+from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from .forms import ContactForm
 from .models import Teacher
@@ -48,4 +48,10 @@ class TeacherUpdateView(UpdateView):
   # in that case, will have to set template_name = "[custom_name]_update_form.html"
   model = Teacher
   fields = "__all__"
+  success_url = reverse_lazy("classroom:list_teacher")
+
+class TeacherDeleteView(DeleteView):
+  # template_name = <model_name>_confirm_delete.html by default; in this case it's teacher_confirm_delete.html
+  # context_object_name = 'object' / <model_name_in_lowercase> by default, in this case `teacher` also works
+  model = Teacher
   success_url = reverse_lazy("classroom:list_teacher")
