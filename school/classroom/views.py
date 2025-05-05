@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, CreateView
+from django.views.generic import TemplateView, FormView, CreateView, ListView
 from django.urls import reverse, reverse_lazy
 from .forms import ContactForm
 from .models import Teacher
@@ -32,3 +32,6 @@ class ContactView(FormView):
   def form_valid(self, form):
     print(form.cleaned_data)
     return super().form_valid(form)
+
+class TeacherListView(ListView):
+  model = Teacher
