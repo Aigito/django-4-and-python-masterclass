@@ -6,5 +6,6 @@ app_name = "classroom"
 urlpatterns = [
     path("", views.HomeView.as_view(), name = "home"),
     path("thank_you/", views.ThankYouView.as_view(), name = "thank_you"),
-    path("contact/", views.ContactView.as_view(), name = "contact")
+    path("contact/", views.ContactView.as_view(), name = "contact"),
+    path("create_teacher/", views.CreateView.as_view(), name = "create_teacher"),
 ]
