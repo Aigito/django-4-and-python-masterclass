@@ -17,6 +17,8 @@ class Book(models.Model):
   author = models.ForeignKey('Author', on_delete = models.SET_NULL)
   summary = models.TextField(max_length = 600)
   isbn = models.CharField("'ISBN", max_length = 13, unique = True)
+  genre = models.ManyToManyField(Genre)
+
 class Author(models.Model):
   first_name = models.CharField(max_length=50)
   last_name = models.CharField(max_length=50)
