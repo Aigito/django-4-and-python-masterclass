@@ -20,7 +20,7 @@ class Book(models.Model):
 
   # on_delete = models.SET_NULL option means that when an author is deleted
   # any book instance with this author will have author set to NULL
-  author = models.ForeignKey('Author', on_delete = models.SET_NULL)
+  author = models.ForeignKey('Author', on_delete = models.SET_NULL, null = True)
   summary = models.TextField(max_length = 600)
   isbn = models.CharField("'ISBN", max_length = 13, unique = True)
   genre = models.ManyToManyField(Genre)
@@ -62,7 +62,7 @@ class BookInstance(models.Model):
   # RESTRICT prevents Book model instance to be deleted when there is a connected BookInstance
   book = models.ForeignKey('Book', on_delete = models.RESTRICT, null = True)
   imprint = models.CharField(max_length = 50)
-  due_back = models.models.DateField(null = True, blank = True)
+  due_back = models.DateField(null = True, blank = True)
 
   LOAN_STATUS = (
     ('m', 'Maintenance'),
