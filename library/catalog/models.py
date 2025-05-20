@@ -8,6 +8,12 @@ class Genre(models.Model):
   def __str__(self):
     return self.name
 
+class Language(models.Model):
+  name = models.CharField(max_length = 50)
+
+  def __str__(self):
+    return self.name
+
 class Book(models.Model):
   title = models.CharField(max_length = 150)
   # author is its own model rather than just a simple field
@@ -18,6 +24,7 @@ class Book(models.Model):
   summary = models.TextField(max_length = 600)
   isbn = models.CharField("'ISBN", max_length = 13, unique = True)
   genre = models.ManyToManyField(Genre)
+  language = models.ForeignKey('Language', on_delete = models.SET_NULL, null = True)
 
   def __str__(self):
     return self.title
