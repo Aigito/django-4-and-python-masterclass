@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+import uuid
 # Create your models here.
 class Genre(models.Model):
   name = models.CharField(max_length = 150)
@@ -40,3 +40,39 @@ class Author(models.Model):
   def __str__(self):
     return f"{self.last_name}, {self.first_name}"
 
+# BookInstance represent copies of a single book
+# i.e. A library can have multiple copies of the same book
+# This is done to maintain:
+# - separation of concepts
+# - efficient data storage (no storing the same ISBN 50 times)
+# - individual copy tracking
+# - better instance management
+# - scalability
+# - consistency and data integrity (single source of truth)
+class BookInstance(models.Model):
+  id = models.UUIDField(primary_key = True, default = uuid.uuid4)
+
+  # RESTRICT prevents Book model instance to be deleted when there is a connected BookInstance
+  book = models.ForeignKey('Book', on_delete = models.RESTRICT, null = True)
+  imprint = models.CharField(max_length = 50)
+  due_back = models.models.DateField(null = True, blank = True)
+
+  LOAN_STATUS = (
+    ('m', 'Maintenance'),
+    ('o', 'On Loan'),
+    ('a', 'Available'),
+    ('r', 'Reserved'),
+  )
+
+  status = models.CharField(
+    max_length=1,
+    choices = LOAN_STATUS,
+    blank = True,
+    default = 'm'
+  )
+
+  class Meta:
+    ordering = ['due_back']
+
+  def __str__(self):
+    return f'{self.id} ({self.book.title})'
