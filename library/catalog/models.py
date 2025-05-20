@@ -19,6 +19,13 @@ class Book(models.Model):
   isbn = models.CharField("'ISBN", max_length = 13, unique = True)
   genre = models.ManyToManyField(Genre)
 
+  def __str__(self):
+    return self.title
+
+  def get_absolute_url(self):
+      return reverse("book_detail", kwargs={"pk": self.pk})
+
+
 class Author(models.Model):
   first_name = models.CharField(max_length=50)
   last_name = models.CharField(max_length=50)
@@ -32,3 +39,4 @@ class Author(models.Model):
 
   def __str__(self):
     return f"{self.last_name}, {self.first_name}"
+
