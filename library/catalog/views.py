@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Book, Author, BookInstance, Genre, Language
 from django.views.generic import CreateView, DetailView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def index(request):
@@ -18,7 +19,7 @@ def index(request):
 
   return render(request, 'catalog/index.html', context)
 
-class BookCreate(CreateView):
+class BookCreate(LoginRequiredMixin , CreateView):
   model = Book
   fields = '__all__'
 
